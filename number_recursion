@@ -1,0 +1,21 @@
+//BASIC RECURSION 
+#include <iostream>
+#include <vector>
+using namespace std;
+class Solution {
+public:
+   void recur(int n){
+      if(n<1){
+          return;
+      }
+      recur(n-1);   //if it is on top it is 1 to n; else in bottom it is n to 1.
+      cout<<n<<endl;
+      
+   }
+};
+int main() {
+    Solution si;
+    int n=10;
+    si.recur(n);
+    return 0;
+}
