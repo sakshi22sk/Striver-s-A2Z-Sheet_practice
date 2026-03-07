@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        //two pointers
+        if(x<0){
+            return false;
+        }
+        
+        int c=1;
+        while(x/c>=10){
+            c=c*10;
+        }
+        while(x!=0){
+        //counts rightmost digit
+        int rem=x%10;
+        //counts leftmost digit
+        int k=x/c;
+        if(rem!=k){
+            return false;
+        }
+        //removed first and last digits
+        x=(x%c)/10;
+        // remove 00 for first and last digits
+        c=c/100;
+        }
+        return true;
+    }
+};
