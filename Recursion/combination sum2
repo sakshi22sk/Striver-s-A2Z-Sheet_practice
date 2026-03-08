@@ -1,0 +1,31 @@
+class Solution {
+public:
+    void recursion(int indx,vector<int> &candidates,int target,vector<vector<int>> &ans,vector<int> v){
+        if(indx==candidates.size()){
+            if(target==0){
+                sort(v.begin(),v.end());
+                ans.push_back(v);
+            }
+            return;
+        }
+        if(target>=candidates[indx]){
+            v.push_back(candidates[indx]);
+            recursion(indx+1,candidates,target-candidates[indx],ans,v);
+            v.pop_back();
+        }
+           // skip duplicates
+        while(indx+1 < candidates.size() && candidates[indx] == candidates[indx+1])
+            indx++;
+        recursion(indx+1,candidates,target,ans,v);
+    }
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int>v;
+          sort(candidates.begin(), candidates.end());   // IMPORTANT to avoid duplicate enteries
+        int indx=0;
+        
+        recursion(indx,candidates,target,ans,v);
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
