@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void recursion(int indx,vector<int> &candidates,int target,vector<vector<int>> &ans,vector<int> v){
+
+        if(indx==candidates.size()){
+            if(target==0){
+                ans.push_back(v);
+            }
+            return;
+        }
+        if(target>=candidates[indx]){
+            v.push_back(candidates[indx]);
+            recursion(indx,candidates,target-candidates[indx],ans,v);
+            v.pop_back();
+        }
+        recursion(indx+1,candidates,target,ans,v);
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> v;
+        int indx=0;
+        recursion(indx,candidates,target,ans,v);
+        return ans;
+    }
+};
